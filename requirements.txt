@@ -1,0 +1,9 @@
+Cartopy @ file:///C:/Users/gaibo/AppData/Local/Programs/Python/Python38-32/Cartopy-0.18.0-cp38-cp38-win32.whl
+
+pandas==1.1.1
+
+matplotlib==3.3.1
+
+scipy==1.5.2
+
+numpy==1.19.1

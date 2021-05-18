@@ -11,7 +11,7 @@ import scipy.stats as stats
 from sklearn.preprocessing import PowerTransformer
 
 
-plt.style.use('ggplot')
+plt.style.use('seaborn')
 
 belisario_pm = []
 carapungo_pm = []
@@ -42,7 +42,7 @@ tumbaco_pm_19 = []
 
 
 #Read File == Resultados 1 mes durante la pandemia 2020
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/PM2.5/PM2.5-N.csv", "r") as csv_file:
+with open("/home/edward/DataScience_Projects/Air Pollution/PM2.5/PM2.5-N.csv", "r") as csv_file:
     f = csv.reader(csv_file, delimiter=",")
     for line in islice(f, 136404, 140843):
         belisario_pm.append(float(line[1]))
@@ -55,7 +55,7 @@ with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analy
         tumbaco_pm.append(float(line[8]))
 
 #Read File == Resultados 1 mes antes la pandemia 2020
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/PM2.5/PM2.5-N.csv", "r") as csv_file_antes:
+with open("/home/edward/DataScience_Projects/Air Pollution/PM2.5/PM2.5-N.csv", "r") as csv_file_antes:
     z = csv.reader(csv_file_antes, delimiter=",")
     for line in islice(z, 131964, 136403):
         belisario_pm_a.append(float(line[1]))
@@ -68,7 +68,7 @@ with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analy
         tumbaco_pm_a.append(float(line[8]))
 
 #Read File == Resultados 1 mes 2019
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/PM2.5/PM2.5-N.csv", "r") as csv_file_2019:
+with open("/home/edward/DataScience_Projects/Air Pollution/PM2.5/PM2.5-N.csv", "r") as csv_file_2019:
     c = csv.reader(csv_file_2019, delimiter=",")
     for line in islice(c, 127620, 132059):
         belisario_pm_19.append(float(line[1]))
@@ -105,7 +105,7 @@ mask_r = (belisario_pm_19 > 0)
 
 ax1.plot(tiempo_b[mask], belisario_pm[mask])
 ax1.plot(tiempo_j[mask_j], belisario_pm_a[mask_j])
-ax1.plot(tiempo_r[mask_r], belisario_pm_19[mask_r])
+#ax1.plot(tiempo_r[mask_r], belisario_pm_19[mask_r])
 ax1.set_title("Belisario")
 
 # pt = PowerTransformer(method='box-cox')
@@ -139,7 +139,7 @@ wiltest_carapungo = stats.wilcoxon(carapungo_pm, carapungo_pm_a)
 
 ax2.plot(tiempo_c[mask_c], carapungo_pm[mask_c])
 ax2.plot(tiempo_k[mask_k], carapungo_pm_a[mask_k])
-ax2.plot(tiempo_s[mask_s], carapungo_pm_19[mask_s])
+#ax2.plot(tiempo_s[mask_s], carapungo_pm_19[mask_s])
 ax2.set_title("Carapungo")
 
 
@@ -163,7 +163,7 @@ wiltest_centro = stats.wilcoxon(centro_pm, centro_pm_a)
 
 ax3.plot(tiempo_d[mask_d], centro_pm[mask_d])
 ax3.plot(tiempo_l[mask_l], centro_pm_a[mask_l])
-ax3.plot(tiempo_t[mask_t], centro_pm_19[mask_t])
+#ax3.plot(tiempo_t[mask_t], centro_pm_19[mask_t])
 ax3.set_title("Centro")
 
 #Plot cotocollao_pm CO
@@ -186,7 +186,7 @@ wiltest_cotocollao = stats.wilcoxon(cotocollao_pm, cotocollao_pm_a)
 
 ax4.plot(tiempo_e[mask_e], cotocollao_pm[mask_e])
 ax4.plot(tiempo_m[mask_m], cotocollao_pm_a[mask_m])
-ax4.plot(tiempo_u[mask_u], cotocollao_pm_19[mask_u])
+#ax4.plot(tiempo_u[mask_u], cotocollao_pm_19[mask_u])
 ax4.set_title("Cotocollao")
 
 
@@ -196,8 +196,8 @@ ax4.set_title("Cotocollao")
 fig.text(0.5, 0.04, 'Tiempo (Horas)', ha='center')
 fig.text(0.04, 0.5, 'Índices PM2.5 (mg/m3)', va='center', rotation='vertical')
 
-fig.legend(["Durante", "Antes", "2019"])
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/PM2.5/Gráficos PM2.5/1.png")
+fig.legend(["Durante", "Antes"])
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/PM2.5/Gráficos PM2.5/1.png")
 plt.show()
 
 
@@ -223,7 +223,7 @@ wiltest_elcamal = stats.wilcoxon(elcamal_pm, elcamal_pm_a)
 
 ax1.plot(tiempo_f[mask_f], elcamal_pm[mask_f])
 ax1.plot(tiempo_n[mask_n], elcamal_pm_a[mask_n])
-ax1.plot(tiempo_u[mask_v], elcamal_pm_19[mask_v])
+#ax1.plot(tiempo_u[mask_v], elcamal_pm_19[mask_v])
 ax1.set_title("El camal")
 
 #Plot guamani_pm CO
@@ -246,7 +246,7 @@ wiltest_guamani = stats.wilcoxon(guamani_pm, guamani_pm_a)
 
 ax2.plot(tiempo_g[mask_g], guamani_pm[mask_g])
 ax2.plot(tiempo_o[mask_o], guamani_pm_a[mask_o])
-ax2.plot(tiempo_w[mask_w], guamani_pm_19[mask_w])
+#ax2.plot(tiempo_w[mask_w], guamani_pm_19[mask_w])
 ax2.set_title("Guamní")
 
 #Will take the same label axis
@@ -255,8 +255,8 @@ ax2.set_title("Guamní")
 fig2.text(0.5, 0.04, 'Tiempo (Horas)', ha='center')
 fig2.text(0.04, 0.5, 'Índices PM2.5 (mg/m3)', va='center', rotation='vertical')
 
-fig2.legend(["Durante", "Antes", "2019"])
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/PM2.5/Gráficos PM2.5/2.png")
+fig2.legend(["Durante", "Antes"])
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/PM2.5/Gráficos PM2.5/2.png")
 plt.show()
 
 fig3, ((ax3, ax4)) = plt.subplots(1,2, sharex=True, figsize=(16,10))
@@ -280,7 +280,7 @@ wiltest_chillos = stats.wilcoxon(chillos_pm, chillos_pm_a)
 
 ax3.plot(tiempo_h[mask_h], chillos_pm[mask_h])
 ax3.plot(tiempo_p[mask_p], chillos_pm_a[mask_p])
-ax3.plot(tiempo_x[mask_x], chillos_pm_19[mask_x])
+#ax3.plot(tiempo_x[mask_x], chillos_pm_19[mask_x])
 ax3.set_title("Chillos")
 
 #Plot tumbaco_pm CO
@@ -304,16 +304,16 @@ wiltest_tumbaco = stats.wilcoxon(tumbaco_pm, tumbaco_pm_a)
 
 ax4.plot(tiempo_i[mask_i], tumbaco_pm[mask_i])
 ax4.plot(tiempo_q[mask_q], tumbaco_pm_a[mask_q])
-ax4.plot(tiempo_y[mask_y], tumbaco_pm_19[mask_y])
+#ax4.plot(tiempo_y[mask_y], tumbaco_pm_19[mask_y])
 ax4.set_title("Tumbaco")
 
 fig3.text(0.5, 0.04, 'Tiempo (Horas)', ha='center')
 fig3.text(0.04, 0.5, 'Índices PM2.5 (mg/m3)', va='center', rotation='vertical')
 
 
-fig3.legend(["Durante", "Antes", "2019"])
+fig3.legend(["Durante", "Antes"])
 
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/PM2.5/Gráficos PM2.5/3.png")
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/PM2.5/Gráficos PM2.5/3.png")
 plt.show()
 
 

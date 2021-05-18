@@ -7,7 +7,7 @@ import random
 import numpy as np
 from scipy.stats import ttest_rel, kstest, normaltest
 import scipy.stats as stats
-
+import statistics
 from sklearn.preprocessing import PowerTransformer
 
 
@@ -39,6 +39,27 @@ elcamal_pm_19 = []
 guamani_pm_19 = []
 chillos_pm_19 = []
 tumbaco_pm_19 = []
+
+def medias_antes_durante(belisario_co, carapungo_co, centro_co, cotocollao_co, elcamal_co, guamani_co, chillos_co, tumbaco_co, belisario_co_a, carapungo_co_a, centro_co_a, cotocollao_co_a, elcamal_co_a, guamani_co_a, chillos_co_a, tumbaco_co_a):
+    bel_mean = statistics.mean(belisario_co)
+    car_mean = statistics.mean(carapungo_co)
+    cen_mean = statistics.mean(centro_co)
+    coto_mean = statistics.mean(cotocollao_co)
+    cama_mean = statistics.mean(elcamal_co)
+    gua_mean = statistics.mean(guamani_co)
+    chillos_mean = statistics.mean(chillos_co)
+    tum_mean = statistics.mean(tumbaco_co)
+    
+    bel_mean_a = statistics.mean(belisario_co_a)
+    car_mean_a = statistics.mean(carapungo_co_a)
+    cen_mean_a = statistics.mean(centro_co_a)
+    coto_mean_a = statistics.mean(cotocollao_co_a)
+    cama_mean_a = statistics.mean(elcamal_co_a)
+    gua_mean_a = statistics.mean(guamani_co_a)
+    chillos_mean_a = statistics.mean(chillos_co_a)
+    tum_mean_a = statistics.mean(tumbaco_co_a)
+    
+    return print(f"{bel_mean, car_mean, cen_mean, coto_mean, cama_mean, gua_mean, chillos_mean, tum_mean} Antes: {bel_mean_a, car_mean_a, cen_mean_a, coto_mean_a, cama_mean_a, gua_mean_a, chillos_mean_a, tum_mean_a}")
 
 
 #Read File == Resultados 1 mes durante la pandemia 2020
@@ -353,3 +374,5 @@ for app in app_list:
     Wilcoxon_result_test.append(app)
 
 print(Wilcoxon_result_test)
+
+medias_antes_durante(belisario_pm, carapungo_pm, centro_pm, cotocollao_pm, elcamal_pm, guamani_pm, chillos_pm, tumbaco_pm, belisario_pm_a, carapungo_pm_a, centro_pm_a, cotocollao_pm_a, elcamal_pm_a, guamani_pm_a, chillos_pm_a, tumbaco_pm_a)

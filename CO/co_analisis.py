@@ -411,3 +411,4 @@ plt.savefig('/home/edward/DataScience_Projects/Air Pollution/CO/Gráficos CO/box
 
 
 medias_antes_durante(belisario_co, carapungo_co, centro_co, cotocollao_co, elcamal_co, guamani_co, chillos_co, tumbaco_co, belisario_co_a, carapungo_co_a, centro_co_a, cotocollao_co_a, elcamal_co_a, guamani_co_a, chillos_co_a, tumbaco_co_a)
+

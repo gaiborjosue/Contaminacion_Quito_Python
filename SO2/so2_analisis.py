@@ -7,7 +7,7 @@ import random
 import numpy as np
 from scipy.stats import ttest_rel, kstest, normaltest
 import scipy.stats as stats
-
+import statistics
 from sklearn.preprocessing import PowerTransformer
 
 
@@ -40,9 +40,30 @@ guamani_so2_19 = []
 chillos_so2_19 = []
 tumbaco_so2_19 = []
 
+def medias_antes_durante(belisario_co, carapungo_co, centro_co, cotocollao_co, elcamal_co, guamani_co, chillos_co, tumbaco_co, belisario_co_a, carapungo_co_a, centro_co_a, cotocollao_co_a, elcamal_co_a, guamani_co_a, chillos_co_a, tumbaco_co_a):
+    bel_mean = statistics.mean(belisario_co)
+    car_mean = statistics.mean(carapungo_co)
+    cen_mean = statistics.mean(centro_co)
+    coto_mean = statistics.mean(cotocollao_co)
+    cama_mean = statistics.mean(elcamal_co)
+    gua_mean = statistics.mean(guamani_co)
+    chillos_mean = statistics.mean(chillos_co)
+    tum_mean = statistics.mean(tumbaco_co)
+    
+    bel_mean_a = statistics.mean(belisario_co_a)
+    car_mean_a = statistics.mean(carapungo_co_a)
+    cen_mean_a = statistics.mean(centro_co_a)
+    coto_mean_a = statistics.mean(cotocollao_co_a)
+    cama_mean_a = statistics.mean(elcamal_co_a)
+    gua_mean_a = statistics.mean(guamani_co_a)
+    chillos_mean_a = statistics.mean(chillos_co_a)
+    tum_mean_a = statistics.mean(tumbaco_co_a)
+    
+    return print(f"{bel_mean, car_mean, cen_mean, coto_mean, cama_mean, gua_mean, chillos_mean, tum_mean} Antes: {bel_mean_a, car_mean_a, cen_mean_a, coto_mean_a, cama_mean_a, gua_mean_a, chillos_mean_a, tum_mean_a}")
+
 
 #Read File == Resultados 1 mes durante la pandemia 2020
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/SO2/SO2-N.csv", "r") as csv_file:
+with open("/home/edward/DataScience_Projects/Air Pollution/SO2/SO2-N.csv", "r") as csv_file:
     f = csv.reader(csv_file, delimiter=";")
     for line in islice(f, 142131, 146570):
         belisario_so2.append(float(line[1]))
@@ -55,7 +76,7 @@ with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analy
         tumbaco_so2.append(float(line[8]))
 
 #Read File == Resultados 1 mes antes la pandemia 2020
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/SO2/SO2-N.csv", "r") as csv_file_antes:
+with open("/home/edward/DataScience_Projects/Air Pollution/SO2/SO2-N.csv", "r") as csv_file_antes:
     z = csv.reader(csv_file_antes, delimiter=";")
     for line in islice(z, 137691, 142130):
         belisario_so2_a.append(float(line[1]))
@@ -68,7 +89,7 @@ with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analy
         tumbaco_so2_a.append(float(line[8]))
 
 #Read File == Resultados 1 mes 2019
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/SO2/SO2-N.csv", "r") as csv_file_2019:
+with open("/home/edward/DataScience_Projects/Air Pollution/SO2/SO2-N.csv", "r") as csv_file_2019:
     c = csv.reader(csv_file_2019, delimiter=";")
     for line in islice(c, 133347, 137786):
         belisario_so2_19.append(float(line[1]))
@@ -196,7 +217,7 @@ fig.text(0.5, 0.04, 'Tiempo (Horas)', ha='center')
 fig.text(0.04, 0.5, 'Índices SO2 (mg/m3)', va='center', rotation='vertical')
 
 fig.legend(["Durante", "Antes"])
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/SO2/Gráficos SO2/1.png")
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/SO2/Gráficos SO2/1.png")
 plt.show()
 
 
@@ -256,7 +277,7 @@ fig2.text(0.5, 0.04, 'Tiempo (Horas)', ha='center')
 fig2.text(0.04, 0.5, 'Índices SO2 (mg/m3)', va='center', rotation='vertical')
 
 fig2.legend(["Durante", "Antes"])
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/SO2/Gráficos SO2/2.png")
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/SO2/Gráficos SO2/2.png")
 plt.show()
 
 fig3, ((ax3, ax4)) = plt.subplots(1,2, sharex=True, figsize=(16,10))
@@ -311,8 +332,8 @@ ax4.set_title("Tumbaco")
 fig3.text(0.5, 0.04, 'Tiempo (Horas)', ha='center')
 fig3.text(0.04, 0.5, 'Índices SO2 (mg/m3)', va='center', rotation='vertical')
 
-fig3.legend(["Durante", "Antes", "2019"])
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/SO2/Gráficos SO2/3.png")
+fig3.legend(["Durante", "Antes"])
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/SO2/Gráficos SO2/3.png")
 plt.show()
 
 
@@ -349,3 +370,5 @@ for app in app_list:
     Wilcoxon_result_test.append(app)
 
 print(Wilcoxon_result_test)
+
+medias_antes_durante(belisario_so2, carapungo_so2, centro_so2, cotocollao_so2, elcamal_so2, guamani_so2, chillos_so2, tumbaco_so2, belisario_so2_a, carapungo_so2_a, centro_so2_a, cotocollao_so2_a, elcamal_so2_a, guamani_so2_a, chillos_so2_a, tumbaco_so2_a)

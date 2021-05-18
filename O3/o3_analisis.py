@@ -7,7 +7,7 @@ import random
 import numpy as np
 from scipy.stats import ttest_rel, kstest, normaltest
 import scipy.stats as stats
-
+import statistics
 from sklearn.preprocessing import PowerTransformer
 
 
@@ -63,7 +63,7 @@ tumbaco_o3_19 = []
 
 
 #Read File == Resultados 1 mes durante la pandemia 2020
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/O3/O3-N.csv", "r") as csv_file:
+with open("/home/edward/DataScience_Projects/Air Pollution/O3/O3-N.csv", "r") as csv_file:
     f = csv.reader(csv_file, delimiter=";")
     for line in islice(f, 142131, 146570):
         belisario_o3.append(float(line[1]))
@@ -76,7 +76,7 @@ with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analy
         tumbaco_o3.append(float(line[8]))
 
 #Read File == Resultados 1 mes antes la pandemia 2020
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/O3/O3-N.csv", "r") as csv_file_antes:
+with open("/home/edward/DataScience_Projects/Air Pollution/O3/O3-N.csv", "r") as csv_file_antes:
     z = csv.reader(csv_file_antes, delimiter=";")
     for line in islice(z, 137691, 142130):
         belisario_o3_a.append(float(line[1]))
@@ -89,7 +89,7 @@ with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analy
         tumbaco_o3_a.append(float(line[8]))
 
 #Read File == Resultados 1 mes 2019
-with open("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/O3/O3-N.csv", "r") as csv_file_2019:
+with open("/home/edward/DataScience_Projects/Air Pollution/O3/O3-N.csv", "r") as csv_file_2019:
     c = csv.reader(csv_file_2019, delimiter=";")
     for line in islice(c, 133347, 137786):
         belisario_o3_19.append(float(line[1]))
@@ -217,7 +217,7 @@ fig.text(0.5, 0.04, 'Tiempo (Horas)', ha='center')
 fig.text(0.04, 0.5, 'Índices O3 (mg/m3)', va='center', rotation='vertical')
 
 fig.legend(["Durante", "Antes"])
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/O3/Gráficos O3/1.png")
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/O3/Gráficos O3/1.png")
 plt.show()
 
 
@@ -277,7 +277,7 @@ fig2.text(0.04, 0.5, 'Índices O3 (mg/m3)', va='center', rotation='vertical')
 
 
 fig2.legend(["Durante", "Antes"])
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/O3/Gráficos O3/2.png")
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/O3/Gráficos O3/2.png")
 plt.show()
 
 fig3, ((ax3, ax4)) = plt.subplots(1,2, sharex=True, figsize=(16,10))
@@ -334,7 +334,7 @@ fig3.text(0.04, 0.5, 'Índices O3 (mg/m3)', va='center', rotation='vertical')
 
 fig3.legend(["Durante", "Antes"])
 
-plt.savefig("/home/edward/DataScience_Projects/Air Pollution/Historical_data_analysis/O3/Gráficos O3/3.png")
+plt.savefig("/home/edward/DataScience_Projects/Air Pollution/O3/Gráficos O3/3.png")
 plt.show()
 
 
@@ -367,3 +367,5 @@ for app in app_list:
     Wilcoxon_result_test.append(app)
 
 print(Wilcoxon_result_test)
+
+medias_antes_durante(belisario_o3, carapungo_o3, centro_o3, cotocollao_o3, elcamal_o3, guamani_o3, chillos_o3, tumbaco_o3, belisario_o3_a, carapungo_o3_a, centro_o3_a, cotocollao_o3_a, elcamal_o3_a, guamani_o3_a, chillos_o3_a, tumbaco_o3_a)
